@@ -1,0 +1,45 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
+| Date         : Wed Jun  3 15:12:52 2020
+| Host         : hkermabon-PC running 64-bit Ubuntu 18.04.4 LTS
+| Command      : report_methodology -file xilinx_dma_pcie_ep_methodology_drc_routed.rpt -pb xilinx_dma_pcie_ep_methodology_drc_routed.pb -rpx xilinx_dma_pcie_ep_methodology_drc_routed.rpx
+| Design       : xilinx_dma_pcie_ep
+| Device       : xc7vx690tffg1761-3
+| Speed File   : -3
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 2
++---------+----------+------------------------------+------------+
+| Rule    | Severity | Description                  | Violations |
++---------+----------+------------------------------+------------+
+| LUTAR-1 | Warning  | LUT drives async reset alert | 2          |
++---------+----------+------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell xdma_0_i/inst/pcie3_ip_i/inst/gt_top_i/pipe_wrapper_i/pipe_lane[2].pipe_user_i/reg_phy_rdy[1]_i_1, with 2 or more inputs, drives asynchronous reset pin(s) xdma_0_i/inst/pcie3_ip_i/inst/gt_top_i/reg_phy_rdy_reg[0]/PRE, xdma_0_i/inst/pcie3_ip_i/inst/gt_top_i/reg_phy_rdy_reg[1]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell xdma_0_i/inst/pcie3_ip_i/inst/pcie_top_i/pcie_7vx_i/user_reset_i_1, with 2 or more inputs, drives asynchronous reset pin(s) xdma_0_i/inst/pcie3_ip_i/inst/user_reset_int_reg/PRE, xdma_0_i/inst/pcie3_ip_i/inst/user_reset_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+
