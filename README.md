@@ -1,6 +1,6 @@
-# Hugo KERMABON--BOBINNEC XDMA repository
+# XDMA repository
 
-## What does this repo contains ?
+## What does this repo contain ?
 
 This repository contains two things : first one is the Vivado 2018.1 project with a customized DMA/PCIe Xilinx IP and an example app (https://www.xilinx.com/support/documentation/ip_documentation/xdma/v4_1/pg195-pcie-dma.pdf). The second one is a fork of Xilinx DMA IP Drivers (https://github.com/Xilinx/dma_ip_drivers) which I modified alongside the Vivado project. These two parts are designed to work together, however each part can be used independantly and serve as a working base for further improvements.
 
