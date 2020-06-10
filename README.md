@@ -20,13 +20,27 @@ The project hasn't been tested on other Vivado version nor FPGA devices yet.
 
 ## Xilinx DMA IP driver (/XDMA)
 
+For more information, see : https://www.xilinx.com/Attachment/Xilinx_Answer_71435_XDMA_Debug_Guide.pdf
+
 This is a fork of the original Xilinx DMA IP driver. It's currently being tested under Linux kernel v5.3. Some modifications were brought to the original driver :
 
 + Supports for 2 (and only 2) DMA channel (modification in xdma/xdma_cdev.c:624 : xdma_threads_create(~~8~~2); )
 + Makefile modification according to https://github.com/Xilinx/dma_ip_drivers/pull/44#issuecomment-584447315 
 
+
+
 ## IMPORTANT 
 
 This section contains some important things I've noticed/done in order to make everything work.
 
-+ For the Xilinx driver : loading the driver will cause the devices to be part of the "root" group. I should create a udev rule to put them in the xdma group for example. Then, user should be in the xdma group in order to have write/read access on the devices. I'm thinking of an automation of this task.
++ For the Xilinx driver : loading the driver will cause the devices to be part of the "root" group. A solution is to create a udev rule :
+```
+sudo groupadd xdma
+sudo usermod -a -G xdma $USERNAME
+sudo echo '"SUBSYSTEM=="xdma", GROUP="xdma", MODE="0660"' > /etc/udev/rules.d/29-xdma.rules
+sudo chown root:root /etc/udev/rules.d/29-xdma.rules
+sudo chmod 0644 /etc/udev/rules.d/29-xdma.rules
+```
+This will create a "xdma" group for the XDMA channels/devices and add yourself in this group. This way, you don't need to run every script accessing the devices as root. Maybe another solution could be found ?
+
+
