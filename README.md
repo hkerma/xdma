@@ -24,3 +24,9 @@ This is a fork of the original Xilinx DMA IP driver. It's currently being tested
 
 + Supports for 2 (and only 2) DMA channel (modification in xdma/xdma_cdev.c:624 : xdma_threads_create(~~8~~2); )
 + Makefile modification according to https://github.com/Xilinx/dma_ip_drivers/pull/44#issuecomment-584447315 
+
+## IMPORTANT 
+
+This section contains some important things I've noticed/done in order to make everything work.
+
++ For the Xilinx driver : loading the driver will cause the devices to be part of the "root" group. I should create a udev rule to put them in the xdma group for example. Then, user should be in the xdma group in order to have write/read access on the devices. I'm thinking of an automation of this task.
