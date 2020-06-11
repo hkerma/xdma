@@ -43,4 +43,6 @@ sudo chmod 0644 /etc/udev/rules.d/29-xdma.rules
 ```
 This will create a "xdma" group for the XDMA channels/devices and add yourself in this group. This way, you don't need to run every script accessing the devices as root. Maybe another solution could be found ?
 
++ There is a driver signature issue, someone offered a solution in https://github.com/Xilinx/dma_ip_drivers/issues/39#issuecomment-552683064 
+
 
