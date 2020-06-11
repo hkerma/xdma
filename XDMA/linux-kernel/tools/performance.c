@@ -73,7 +73,7 @@ static int verbosity = 0;
 int main(int argc, char *argv[])
 {
   int cmd_opt;
-  char *device = "/dev/xdma/card0/h2c0";
+  char *device = NULL;
   uint32_t size = 32768;
   uint32_t count = 1;
   char *filename = NULL;

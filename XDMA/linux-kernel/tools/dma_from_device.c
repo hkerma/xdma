@@ -199,7 +199,8 @@ static int test_dma(char *devname, uint64_t addr, uint64_t size,
 
 		/* subtract the start time from the end time */
 		timespec_sub(&ts_end, &ts_start);
-		total_time += ts_end.tv_nsec;
+		//total_time += ts_end.tv_nsec; // Mmmmmh why doesn't it take the tv_sec ??
+		total_time += (ts_end.tv_sec)*1000000000 + ts_end.tv_nsec;
 		/* a bit less accurate but side-effects are accounted for */
 		if (verbose)
 		fprintf(stdout,
@@ -214,12 +215,12 @@ static int test_dma(char *devname, uint64_t addr, uint64_t size,
 				goto out;
 		}
 	}
-	avg_time = (float)total_time/(float)count;
-	result = ((float)size)*1000/avg_time;
+	avg_time = (float)total_time/(float)count; //in nsec
+	result = ((float)size)/avg_time; //in GB/sec
 	if (verbose)
 	printf("** Avg time device %s, total time %ld nsec, avg_time = %f, size = %lu, BW = %f \n",
 		devname, total_time, avg_time, size, result);
-	printf("** Average BW = %lu, %f\n", size, result);
+	printf("** Average BW = %f GB/sec for blocks of %ld bytes \n", result, size);
 	rc = 0;
 
 out:
