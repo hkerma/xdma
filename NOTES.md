@@ -3,7 +3,8 @@
 This file contains personnal notes about the driver/the IP. It helps understanding how do Linux drivers work.
 
 ## Operation table
-I struggled to understand how does the driver know what to do when I write to the buffer files (xdma_h2c or xdma_c2h). [This](https://stackoverflow.com/questions/19294620/how-device-driver-write-read-works) and [this](https://stackoverflow.com/questions/17663692/file-operations-in-drivers) brought help.
+I struggled to understand how does the driver know what to do when I write to the buffer files (xdma_h2c or xdma_c2h). [This](https://stackoverflow.com/questions/19294620/how-device-driver-write-read-works) and [this](https://stackoverflow.com/questions/17663692/file-operations-in-drivers) brought help. [This](https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html) is also a very good ressource.
+
 The driver creates "buffering" files under /dev. Those are character devices. In cdev_sgdma.c, there's an "operation table" which refers the function being called whenever a process read or write to the char devices.
 ```
 static const struct file_operations sgdma_fops = {
